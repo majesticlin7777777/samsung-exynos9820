@@ -19,7 +19,7 @@ sockmap-objs := ../bpf/bpf_load.o $(LIBBPF) sockmap_user.o
 always := $(hostprogs-y)
 always += sockmap_kern.o
 
-HOSTLOADLIBES_sockmap += -lelf -lpthread
+HOSTLDLIBS_sockmap += -lelf -lpthread
 
 # Allows pointing LLC/CLANG to a LLVM backend with bpf support, redefine on cmdline:
 #  make samples/bpf/ LLC=~/git/llvm/build/bin/llc CLANG=~/git/llvm/build/bin/clang
