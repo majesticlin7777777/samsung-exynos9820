@@ -50,7 +50,16 @@ toolchain = {
     'proton': {
         'CROSS_COMPILE': 'toolchain/bin/aarch64-linux-gnu-',
         'CROSS_COMPILE_ARM32': 'toolchain/bin/arm-linux-gnueabi-',
-        'CC': 'toolchain/bin/clang'
+        'CC': 'toolchain/bin/clang',
+        'LD': 'toolchain/bin/ld.lld',
+        'AR': 'toolchain/bin/llvm-ar',
+        'NM': 'toolchain/bin/llvm-nm',
+        'OBJCOPY': 'toolchain/bin/llvm-objcopy',
+        'OBJDUMP': 'toolchain/bin/llvm-objdump',
+        'READELF': 'toolchain/bin/llvm-readelf',
+        'OBJSIZE': 'toolchain/bin/llvm-size',
+        'STRIP': 'toolchain/bin/llvm-strip',
+        'LLVM': '1'
     }
 }
 
@@ -433,7 +442,7 @@ if __name__ == '__main__':
         print('Build date: ' + datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC'))
         if configs['kernel']['magisk']['enabled']:
             update_magisk(configs['kernel']['magisk'].get('version'))
-        build(**toolchain[configs['toolchain']])
+        build(**toolchain[configs.get('toolchain', 'default')])
     boot_img = 'boot-' + model + '.img'
     if 'mkimg' in stages:
         os_patch_level = ''
