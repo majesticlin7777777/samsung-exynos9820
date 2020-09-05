@@ -47,12 +47,12 @@ jobs:
     - name: Create boot.img
       run: ./build :mkimg
     - name: Upload Kernel
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v1
       with:
         name: CruelKernel-${{ matrix.model }}
         path: boot-${{ matrix.model }}.img
     - name: Upload Kernel Info
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v1
       with:
         name: ConfigurationInfo-${{ matrix.model }}
         path: config.*
